@@ -1,10 +1,10 @@
 package com.jchaffin.springtestingexercise;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -21,13 +21,9 @@ public class JpaMappingsTest {
 	@Resource
 	private EmployeeRepository employeeRepo;
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
 	public void shouldSaveAndLoadEmployee() {
-		Employee employee = employee.save(new Employee("name"));
+		Employee employee = employeeRepo.save(new Employee("name"));
 
 		entityManager.persist(employee);
 		entityManager.flush();
